@@ -10,21 +10,6 @@ class DishDetail extends Component{
         };
     }
 
-    setLongDate(date){
-        const monthNames = [
-            "January", "February", "March",
-            "April", "May", "June", "July",
-            "August", "September", "October",
-            "November", "December"
-          ];
-        
-          const day = date.getDate();
-          const monthIndex = date.getMonth();
-          const year = date.getFullYear();
-        
-          return  monthNames[monthIndex] + ' ' + day + ' , ' + year;
-    }
-
     renderDish(dish) {
         if (dish != null)
             return(
@@ -42,15 +27,13 @@ class DishDetail extends Component{
             );
     }
 
-    
-
     renderComments(dish){
         if (dish != null){
             const comment=this.props.dish.comments.map((cm=>{
                 return(
                     <ul key={cm.id} className="list-unstyled">
                         <li><p>{cm.comment}</p></li>
-                        <li><p>--{cm.author} , {this.setLongDate(new Date(cm.date))}</p></li>
+                        <li><p>--{cm.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cm.date)))}</p></li>
                     </ul>
                 );
             }));
@@ -74,11 +57,13 @@ class DishDetail extends Component{
 
     render(){
         return(
-            <div className="row">
-              <div  className="col-12 col-md-5 m-1">
-                {this.renderDish(this.props.dish)}
-              </div>
-                {this.renderComments(this.props.dish)}
+            <div class="container">
+                <div className="row">
+                <div  className="col-12 col-md-5 m-1">
+                    {this.renderDish(this.props.dish)}
+                </div>
+                    {this.renderComments(this.props.dish)}
+                </div>   
             </div>
         );
     }
