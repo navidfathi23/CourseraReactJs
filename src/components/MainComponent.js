@@ -32,6 +32,7 @@ class Main extends Component {
           </Switch>
       </div>
     );
+  }
 }
 
 export default Main;
