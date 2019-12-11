@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
 import Header from './HeaderComponent';
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
@@ -19,17 +18,18 @@ class Main extends Component {
   render() {
     const HomePage = () => {
       return(
-          <Home 
-          />
+          <Home />
       );
     }
     return (
       <div>
+        <Header />
         <Switch>
               <Route path='/home' component={HomePage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
               <Redirect to="/home" />
-          </Switch>
+        </Switch>
+        <Footer />
       </div>
     );
   }
