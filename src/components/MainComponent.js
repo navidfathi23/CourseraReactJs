@@ -4,6 +4,7 @@ import Menu from './MenuComponent';
 import Contact from './ContactComponent';
 import DishDetail from './DishdetailComponent';
 import Footer from './FooterComponent';
+import About from './AboutComponent';
 import Home from './HomeComponent';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
@@ -40,12 +41,13 @@ class Main extends Component {
             comments={this.state.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
       );
     };
-
+    
     return (
       <div>
         <Header />
         <Switch>
               <Route path='/home' component={HomePage} />
+              <Route exact path='/aboutus' component={() => <About leaders={this.state.leaders} />}/>
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
               <Route path='/menu/:dishId' component={DishWithId} />
               <Route exact path='/contactus' component={Contact}/>
